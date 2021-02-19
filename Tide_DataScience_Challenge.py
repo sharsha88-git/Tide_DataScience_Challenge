@@ -20,9 +20,12 @@ import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import f1_score, make_scorer, confusion_matrix, classification_report, precision_recall_curve, plot_precision_recall_curve, average_precision_score, auc
+from xgboost import XGBRegressor
+from math import sqrt
+from sklearn.metrics import mean_squared_error
 
 import seaborn as sns
-from hyperopt import hp, fmin, tpe, Trials, STATUS_OK
+from hyperopt import hp, fmin, tpe, Trials, STATUS_OK, space_eval
 import xgboost as xgb
 import shap
 import os
@@ -145,11 +148,11 @@ ax.set_title('Confusion Matrix');
 ax.xaxis.set_ticklabels(labels); ax.yaxis.set_ticklabels(labels);
 
 
-# In[35]:
+# In[83]:
 
 
-data['label1']= (data.DateMappingMatch).astype(float)
-data.hist('label1')
+data['label']= (data.DateMappingMatch).astype(float)
+data.hist('label')
 print(" Distribuition of DateMappingMatch feature values")
 
 
